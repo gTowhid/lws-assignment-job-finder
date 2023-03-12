@@ -5,6 +5,7 @@ import JobItem from './JobItem';
 
 export default function JobsList() {
   const { jobs, isLoading, isError, error } = useSelector((state) => state.job);
+  const { filter, searchTerm } = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +19,11 @@ export default function JobsList() {
   if (!isLoading && !isError && jobs?.length === 0)
     content = <div>No job was found!</div>;
   if (!isLoading && !isError && jobs?.length > 0)
-    content = jobs.map((job) => <JobItem key={job.id} job={job} />);
+    {
+      if (filter) content = jobs.filter(job => job.type === filter).map((job) => <JobItem key={job.id} job={job} />);
+      if (searchTerm) content = jobs.filter(job => job.title.toLowerCase().includes(searchTerm.toLowerCase())).map((job) => <JobItem key={job.id} job={job} />);
+      if (!filter && !searchTerm) content = jobs.map((job) => <JobItem key={job.id} job={job} />);
+    }
 
   return <div className="jobs-list">{content}</div>;
 }

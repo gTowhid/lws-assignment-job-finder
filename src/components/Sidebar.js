@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { filterSelected } from '../features/filter/filterSlice';
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
+
   return (
     <div className="sidebar">
       <nav>
@@ -10,6 +14,7 @@ export default function Sidebar() {
               to="/"
               className="main-menu menu-active"
               id="lws-alljobs-menu"
+              onClick={() => dispatch(filterSelected(''))}
             >
               <i className="fa-solid fa-briefcase"></i>
               <span> All Available Jobs</span>
@@ -20,6 +25,7 @@ export default function Sidebar() {
                   className="sub-menu"
                   // href="/jobs/internship"
                   id="lws-internship-menu"
+                  onClick={() => dispatch(filterSelected('Internship'))}
                 >
                   <i className="fa-solid fa-stop !text-[#FF5757]"></i>
                   Internship
@@ -30,6 +36,7 @@ export default function Sidebar() {
                   className="sub-menu"
                   // href="/jobs/fulltime"
                   id="lws-fulltime-menu"
+                  onClick={() => dispatch(filterSelected('Full Time'))}
                 >
                   <i className="fa-solid fa-stop !text-[#FF8A00]"></i>
                   Full Time
@@ -40,6 +47,7 @@ export default function Sidebar() {
                   className="sub-menu"
                   // href="/jobs/remote"
                   id="lws-remote-menu"
+                  onClick={() => dispatch(filterSelected('Remote'))}
                 >
                   <i className="fa-solid fa-stop !text-[#56E5C4]"></i>
                   Remote

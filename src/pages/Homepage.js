@@ -1,6 +1,11 @@
+import { useDispatch } from 'react-redux';
 import JobsList from '../components/JobsList';
+import { searched } from '../features/filter/filterSlice';
+
 
 export default function Homepage() {
+  const dispatch = useDispatch();
+  
   return (
     <main className="max-w-3xl rounded-lg mx-auto relative z-20 p-10 xl:max-w-none bg-[#1E293B]">
       <div className="md:flex space-y-2 md:space-y-0 justify-between mb-10">
@@ -13,6 +18,7 @@ export default function Homepage() {
               placeholder="Search Job"
               className="search-input"
               id="lws-searchJob"
+              onChange={(e) => dispatch(searched(e.target.value))}
             />
           </div>
           <select
