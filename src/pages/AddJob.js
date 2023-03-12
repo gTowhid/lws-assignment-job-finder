@@ -111,7 +111,7 @@ export default function AddJob() {
               disabled={isLoading}
               className="cursor-pointer btn btn-primary w-fit"
             >
-              Add Job
+              Save
             </button>
           </div>
         </form>
